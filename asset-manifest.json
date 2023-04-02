@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/dialogflow-message-creator/static/css/main.d25ae0f6.css",
-    "main.js": "/dialogflow-message-creator/static/js/main.b24e811a.js",
+    "main.css": "/dialogflow-message-creator/static/css/main.775d5295.css",
+    "main.js": "/dialogflow-message-creator/static/js/main.3e5105fc.js",
     "static/js/787.649f6c05.chunk.js": "/dialogflow-message-creator/static/js/787.649f6c05.chunk.js",
     "index.html": "/dialogflow-message-creator/index.html",
-    "main.d25ae0f6.css.map": "/dialogflow-message-creator/static/css/main.d25ae0f6.css.map",
-    "main.b24e811a.js.map": "/dialogflow-message-creator/static/js/main.b24e811a.js.map",
+    "main.775d5295.css.map": "/dialogflow-message-creator/static/css/main.775d5295.css.map",
+    "main.3e5105fc.js.map": "/dialogflow-message-creator/static/js/main.3e5105fc.js.map",
     "787.649f6c05.chunk.js.map": "/dialogflow-message-creator/static/js/787.649f6c05.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d25ae0f6.css",
-    "static/js/main.b24e811a.js"
+    "static/css/main.775d5295.css",
+    "static/js/main.3e5105fc.js"
   ]
 }
