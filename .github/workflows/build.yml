@@ -17,6 +17,12 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Add collaborator
+        uses: peter-evans/add-collaborator@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          username: github-actions[bot]
+          permission: write
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
