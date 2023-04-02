@@ -36,7 +36,7 @@ const ButtonForm = ({ onSubmit }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label className="flex">
         Label:
         <input
           type="text"
@@ -45,7 +45,7 @@ const ButtonForm = ({ onSubmit }) => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
-      <label>
+      <label className="flex">
         Value:
         <input
           type="text"
@@ -85,7 +85,7 @@ const FixedButtonForm = ({ onSubmit }) => {
     <>
       <form onSubmit={handleSubmit}>
         <label>
-          Left Icon Name:
+          Left icon name:
           <SelectBox
             options={[
               { label: "←", value: "arrow-left" },
@@ -134,7 +134,7 @@ const TextForm = ({ onSubmit }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label className="flex">
         Texto:
         <input
           type="text"
@@ -165,7 +165,7 @@ const RichTextForm = ({ onSubmit }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <div className="p-5">
+      <div className="p-1">
         <ReactQuill
           value={text}
           onChange={handleTextChange}
@@ -204,8 +204,8 @@ const ImageForm = ({ onSubmit }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Nome:
+      <label className="flex">
+        Label:
         <input
           type="text"
           value={name}
@@ -213,7 +213,7 @@ const ImageForm = ({ onSubmit }) => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
-      <label>
+      <label className="flex">
         URL:
         <input
           type="text"
@@ -281,17 +281,21 @@ const App = () => {
   const handleFormSubmit = (List) => {
     setDataList([...dataList, List]);
   };
+
+  const message = {
+    messageType: "default",
+    components: dataList,
+  };
+
   return (
-    <div>
-      <ul>
-        {dataList.map((List, index) => (
-          <li key={index}>
-            <pre>{JSON.stringify(List, null, 2)}</pre>
-          </li>
-        ))}
-      </ul>
-      <h1 className="text-3xl font-bold">Adicionar novo commponente</h1>
-      <Form onSubmit={handleFormSubmit} />
+    <div className="flex flex-row">
+      <div className="flex flex-col flex-1">
+        <h1 className="text-3xl font-bold">Adicionar novo commponente</h1>
+        <Form onSubmit={handleFormSubmit} />
+      </div>
+      <div className="flex flex-1 bg-slate-200 p-5 rounded-2xl">
+        <pre className="text-sm">{JSON.stringify(message, null, 2)}</pre>
+      </div>
     </div>
   );
 };
