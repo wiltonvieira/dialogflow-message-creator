@@ -35,8 +35,8 @@ const ButtonForm = ({ onSubmit }) => {
     setValue("");
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label className="flex">
+    <form class="space-y-2" onSubmit={handleSubmit}>
+      <label class="flex items-center">
         Label:
         <input
           type="text"
@@ -45,7 +45,7 @@ const ButtonForm = ({ onSubmit }) => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
-      <label className="flex">
+      <label class="flex items-center">
         Value:
         <input
           type="text"
@@ -70,7 +70,6 @@ const FixedButtonForm = ({ onSubmit }) => {
   const [leftIconName, setLeftIconName] = useState("");
 
   const handleSelect = (option) => {
-    console.log(option);
     setLeftIconName(option.value);
   };
 
@@ -83,8 +82,8 @@ const FixedButtonForm = ({ onSubmit }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="space-y-2" onSubmit={handleSubmit}>
+        <label class="flex items-center">
           Left icon name:
           <SelectBox
             options={[
@@ -96,7 +95,7 @@ const FixedButtonForm = ({ onSubmit }) => {
           />
         </label>
 
-        <label className="flex">
+        <label class="flex items-center">
           Label:
           <input
             type="text"
@@ -105,7 +104,8 @@ const FixedButtonForm = ({ onSubmit }) => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
           />
         </label>
-        <label className="flex">
+
+        <label class="flex items-center">
           Value:
           <input
             type="text"
@@ -126,20 +126,20 @@ const FixedButtonForm = ({ onSubmit }) => {
 };
 
 const TextForm = ({ onSubmit }) => {
-  const [text, setText] = useState("");
+  const [label, setLabel] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ type: "text", text });
-    setText("");
+    onSubmit({ type: "text", label });
+    setLabel("");
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label className="flex">
-        Texto:
+    <form class="space-y-2" onSubmit={handleSubmit}>
+      <label class="flex items-center">
+        Label:
         <input
           type="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={label}
+          onChange={(e) => setLabel(e.target.value)}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
@@ -153,21 +153,21 @@ const TextForm = ({ onSubmit }) => {
   );
 };
 
-const RichTextForm = ({ onSubmit }) => {
-  const [text, setText] = useState("");
+const HTMLForm = ({ onSubmit }) => {
+  const [label, setLabel] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ type: "richText", text });
-    setText("");
+    onSubmit({ type: "html", label });
+    setLabel("");
   };
   const handleTextChange = (value) => {
-    setText(value);
+    setLabel(value);
   };
   return (
     <form onSubmit={handleSubmit}>
       <div className="p-1">
         <ReactQuill
-          value={text}
+          value={label}
           onChange={handleTextChange}
           modules={{
             toolbar: [
@@ -195,17 +195,37 @@ const RichTextForm = ({ onSubmit }) => {
 
 const ImageForm = ({ onSubmit }) => {
   const [name, setName] = useState("");
-  const [url, setUrl] = useState("");
+  const [link, setLink] = useState("");
+  const [typeOfFile, setTypeOfFile] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ type: "image", name, url });
+    onSubmit({ type: typeOfFile, name, link });
     setName("");
-    setUrl("");
+    setLink("");
   };
+
+  const handleSelect = (option) => {
+    setTypeOfFile(option.value);
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label className="flex">
-        Label:
+    <form class="space-y-2" onSubmit={handleSubmit}>
+      <label class="flex items-center">
+        File Type:
+        <SelectBox
+          options={[
+            { label: "image", value: "image" },
+            { label: "file", value: "file" },
+            { label: "video", value: "video" },
+            { label: "audio", value: "audio" },
+          ]}
+          onSelect={handleSelect}
+        />
+      </label>
+
+      <label class="flex items-center">
+        Name:
         <input
           type="text"
           value={name}
@@ -213,12 +233,12 @@ const ImageForm = ({ onSubmit }) => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
-      <label className="flex">
+      <label class="flex items-center">
         URL:
         <input
           type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
@@ -248,13 +268,13 @@ const Form = ({ onSubmit }) => {
           { label: "Text", value: "text" },
           { label: "Button", value: "button" },
           { label: "Fixed Button", value: "fixed-button" },
-          { label: "HTML", value: "richText" },
-          { label: "Image", value: "image" },
+          { label: "HTML", value: "html" },
+          { label: "File", value: "file" },
         ]}
         onSelect={handleSelect}
       />
       {selectedOption && (
-        <div>
+        <div className="mt-4">
           {selectedOption.value === "text" && (
             <TextForm onSubmit={handleSubmit} />
           )}
@@ -264,11 +284,11 @@ const Form = ({ onSubmit }) => {
           {selectedOption.value === "fixed-button" && (
             <FixedButtonForm onSubmit={handleSubmit} />
           )}
-          {selectedOption.value === "image" && (
+          {selectedOption.value === "file" && (
             <ImageForm onSubmit={handleSubmit} />
           )}
-          {selectedOption.value === "richText" && (
-            <RichTextForm onSubmit={handleSubmit} />
+          {selectedOption.value === "html" && (
+            <HTMLForm onSubmit={handleSubmit} />
           )}
         </div>
       )}
@@ -289,8 +309,8 @@ const App = () => {
 
   return (
     <div className="flex flex-row">
-      <div className="flex flex-col flex-1">
-        <h1 className="text-3xl font-bold">Adicionar novo commponente</h1>
+      <div className="flex flex-col flex-1 ">
+        <h1 className="text-3xl font-bold mb-2">Adicionar novo commponente</h1>
         <Form onSubmit={handleFormSubmit} />
       </div>
       <div className="flex flex-1 bg-slate-200 p-5 rounded-2xl">
