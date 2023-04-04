@@ -216,7 +216,7 @@ const ImageForm = ({ onSubmit }) => {
         <SelectBox
           options={[
             { label: "image", value: "image" },
-            { label: "file", value: "file" },
+            { label: "pdf", value: "file" },
             { label: "video", value: "video" },
             { label: "audio", value: "audio" },
           ]}
@@ -310,7 +310,7 @@ const App = () => {
   return (
     <div className="flex flex-row">
       <div className="flex flex-col flex-1 ">
-        <h1 className="text-3xl font-bold mb-2">Adicionar novo commponente</h1>
+        <h1 className="text-3xl font-bold mb-2">Adicionar novo componente</h1>
         <Form onSubmit={handleFormSubmit} />
       </div>
       <div className="flex flex-1 bg-slate-200 p-5 rounded-2xl">
