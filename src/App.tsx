@@ -234,7 +234,7 @@ const ImageForm = ({ onSubmit }) => {
         />
       </label>
       <label class="flex items-center">
-        URL:
+        Link:
         <input
           type="text"
           value={link}
@@ -303,7 +303,7 @@ const App = () => {
   };
 
   const message = {
-    messageType: "default",
+    messageType: "standard",
     components: dataList,
   };
 
