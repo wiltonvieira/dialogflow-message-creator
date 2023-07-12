@@ -172,12 +172,22 @@ const HTMLForm = ({ onSubmit }) => {
           modules={{
             toolbar: [
               [{ header: [1, 2, false] }],
-              ["bold", "italic", "underline", "strike", "blockquote"],
-              [{ color: [] }, { background: [] }],
+              [
+                "bold",
+                "italic",
+                "underline",
+                "strike",
+                // "blockquote"
+              ],
+              // [{ color: [] }, { background: [] }],
               [{ align: [] }],
               [{ list: "ordered" }, { list: "bullet" }],
-              ["link", "image", "video"],
-              ["clean"],
+              [
+                "link",
+                // "image",
+                // "video"
+              ],
+              // ["clean"],
             ],
           }}
           placeholder="Digite aqui..."
@@ -309,11 +319,11 @@ const App = () => {
 
   return (
     <div className="flex flex-row">
-      <div className="flex flex-col flex-1 ">
+      <div className="flex flex-col flex-1 p-2">
         <h1 className="text-3xl font-bold mb-2">Adicionar novo componente</h1>
         <Form onSubmit={handleFormSubmit} />
       </div>
-      <div className="flex flex-1 flex-col ">
+      <div className="flex flex-1 flex-col overflow-auto">
         <button
           onClick={() => {
             navigator.clipboard
