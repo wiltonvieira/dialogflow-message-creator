@@ -217,8 +217,8 @@ const ImageForm = ({ onSubmit }) => {
           options={[
             { label: "image", value: "image" },
             { label: "pdf", value: "file" },
-            { label: "video", value: "video" },
-            { label: "audio", value: "audio" },
+            // { label: "video", value: "video" },
+            // { label: "audio", value: "audio" },
           ]}
           onSelect={handleSelect}
         />
@@ -314,9 +314,6 @@ const App = () => {
         <Form onSubmit={handleFormSubmit} />
       </div>
       <div className="flex flex-1 flex-col ">
-        <pre className="text-sm bg-slate-200 p-5 rounded-2xl">
-          {JSON.stringify(message, null, 2)}
-        </pre>
         <button
           onClick={() => {
             navigator.clipboard
@@ -336,6 +333,9 @@ const App = () => {
         >
           Copiar Resultado em JSON
         </button>
+        <pre className="text-sm bg-slate-200 p-5 rounded-2xl">
+          {JSON.stringify(message, null, 2)}
+        </pre>
       </div>
     </div>
   );
