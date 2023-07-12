@@ -194,15 +194,15 @@ const HTMLForm = ({ onSubmit }) => {
 };
 
 const ImageForm = ({ onSubmit }) => {
-  const [name, setName] = useState("");
-  const [link, setLink] = useState("");
+  const [label, setLabel] = useState("");
+  const [value, setValue] = useState("");
   const [typeOfFile, setTypeOfFile] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ type: typeOfFile, name, link });
-    setName("");
-    setLink("");
+    onSubmit({ type: typeOfFile, label, value });
+    setLabel("");
+    setValue("");
   };
 
   const handleSelect = (option) => {
@@ -225,11 +225,11 @@ const ImageForm = ({ onSubmit }) => {
       </label>
 
       <label class="flex items-center">
-        Name:
+        Label:
         <input
           type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={label}
+          onChange={(e) => setLabel(e.target.value)}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
@@ -237,8 +237,8 @@ const ImageForm = ({ onSubmit }) => {
         Link:
         <input
           type="text"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 "
         />
       </label>
@@ -313,8 +313,29 @@ const App = () => {
         <h1 className="text-3xl font-bold mb-2">Adicionar novo componente</h1>
         <Form onSubmit={handleFormSubmit} />
       </div>
-      <div className="flex flex-1 bg-slate-200 p-5 rounded-2xl">
-        <pre className="text-sm">{JSON.stringify(message, null, 2)}</pre>
+      <div className="flex flex-1 flex-col ">
+        <pre className="text-sm bg-slate-200 p-5 rounded-2xl">
+          {JSON.stringify(message, null, 2)}
+        </pre>
+        <button
+          onClick={() => {
+            navigator.clipboard
+              .writeText(JSON.stringify(message, null, 2))
+              .then(() =>
+                alert(
+                  "Itens copiados para a área de transferência com sucesso!"
+                )
+              )
+              .catch((err) =>
+                alert(
+                  `Erro ao copiar itens para a área de transferência: ${err}`
+                )
+              );
+          }}
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 m-1 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+        >
+          Copiar Resultado em JSON
+        </button>
       </div>
     </div>
   );
