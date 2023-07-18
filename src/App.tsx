@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-const SelectBox = ({ options, onSelect }) => {
+const SelectBox = ({ options, onSelect, selectedValue }) => {
   const handleChange = (e) => {
     const selectedOption = options.find(
       (option) => option.value === e.target.value
@@ -14,6 +14,7 @@ const SelectBox = ({ options, onSelect }) => {
     <select
       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2"
       onChange={handleChange}
+      value={selectedValue}
     >
       <option value="">Selecione uma opção</option>
       {options.map((option) => (
@@ -68,9 +69,11 @@ const FixedButtonForm = ({ onSubmit }) => {
   const [label, setLabel] = useState("");
   const [value, setValue] = useState("");
   const [leftIconName, setLeftIconName] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
 
   const handleSelect = (option) => {
     setLeftIconName(option.value);
+    setSelectedOption(option.value);
   };
 
   const handleSubmit = (e) => {
@@ -78,6 +81,8 @@ const FixedButtonForm = ({ onSubmit }) => {
     onSubmit({ type: "fixedButton", label, value, leftIconName });
     setLabel("");
     setValue("");
+    setLeftIconName("");
+    setSelectedOption("");
   };
 
   return (
@@ -92,6 +97,7 @@ const FixedButtonForm = ({ onSubmit }) => {
               { label: "ᐩ", value: "plus" },
             ]}
             onSelect={handleSelect}
+            selectedValue={selectedOption}
           />
         </label>
 
@@ -207,16 +213,20 @@ const ImageForm = ({ onSubmit }) => {
   const [label, setLabel] = useState("");
   const [value, setValue] = useState("");
   const [typeOfFile, setTypeOfFile] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ type: typeOfFile, label, value });
     setLabel("");
     setValue("");
+    setSelectedOption("");
+    setTypeOfFile("");
   };
 
   const handleSelect = (option) => {
     setTypeOfFile(option.value);
+    setSelectedOption(option.value);
   };
 
   return (
@@ -231,6 +241,7 @@ const ImageForm = ({ onSubmit }) => {
             // { label: "audio", value: "audio" },
           ]}
           onSelect={handleSelect}
+          selectedValue={selectedOption}
         />
       </label>
 
@@ -282,6 +293,7 @@ const Form = ({ onSubmit }) => {
           { label: "File", value: "file" },
         ]}
         onSelect={handleSelect}
+        selectedValue={selectedOption ? selectedOption.value : ""}
       />
       {selectedOption && (
         <div className="mt-4">
@@ -317,6 +329,13 @@ const App = () => {
     components: dataList,
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(JSON.stringify(message, null, 2))
+      .then(() => alert("Itens copiados para a área de transferência"))
+      .catch((err) => alert(`Erro ao copiar itens: ${err}`));
+  };
+
   return (
     <div className="flex flex-row">
       <div className="flex flex-col flex-1 p-2">
@@ -325,20 +344,7 @@ const App = () => {
       </div>
       <div className="flex flex-1 flex-col overflow-auto">
         <button
-          onClick={() => {
-            navigator.clipboard
-              .writeText(JSON.stringify(message, null, 2))
-              .then(() =>
-                alert(
-                  "Itens copiados para a área de transferência com sucesso!"
-                )
-              )
-              .catch((err) =>
-                alert(
-                  `Erro ao copiar itens para a área de transferência: ${err}`
-                )
-              );
-          }}
+          onClick={copyToClipboard}
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 m-1 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
         >
           Copiar Resultado em JSON
