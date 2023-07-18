@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/dialogflow-message-creator/static/css/main.d4b542b6.css",
-    "main.js": "/dialogflow-message-creator/static/js/main.967d0512.js",
+    "main.js": "/dialogflow-message-creator/static/js/main.1830466b.js",
     "static/js/787.649f6c05.chunk.js": "/dialogflow-message-creator/static/js/787.649f6c05.chunk.js",
     "index.html": "/dialogflow-message-creator/index.html",
     "main.d4b542b6.css.map": "/dialogflow-message-creator/static/css/main.d4b542b6.css.map",
-    "main.967d0512.js.map": "/dialogflow-message-creator/static/js/main.967d0512.js.map",
+    "main.1830466b.js.map": "/dialogflow-message-creator/static/js/main.1830466b.js.map",
     "787.649f6c05.chunk.js.map": "/dialogflow-message-creator/static/js/787.649f6c05.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d4b542b6.css",
-    "static/js/main.967d0512.js"
+    "static/js/main.1830466b.js"
   ]
 }
