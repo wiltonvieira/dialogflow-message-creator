@@ -12,11 +12,11 @@ const SelectBox = ({ options, onSelect, selectedValue }) => {
   };
   return (
     <select
-      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2"
+      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2 mt-3"
       onChange={handleChange}
       value={selectedValue}
     >
-      <option value="">Selecione uma opção</option>
+      <option value="">Selecione o tipo de componente</option>
       {options.map((option) => (
         <option key={option.value} value={option.value}>
           {option.label}
@@ -319,13 +319,14 @@ const Form = ({ onSubmit }) => {
 };
 
 const App = () => {
+  const [intentTitle, setIntentTitle] = useState("");
   const [dataList, setDataList] = useState([]);
   const handleFormSubmit = (List) => {
     setDataList([...dataList, List]);
   };
 
   const message = {
-    messageType: "standard",
+    intentTitle: intentTitle,
     components: dataList,
   };
 
@@ -339,7 +340,15 @@ const App = () => {
   return (
     <div className="flex flex-row">
       <div className="flex flex-col flex-1 p-2">
-        <h1 className="text-3xl font-bold mb-2">Adicionar novo componente</h1>
+        <h1 className="font-bold mb-2">Título da Intent:</h1>
+        <input
+          type="text"
+          value={intentTitle}
+          onChange={(e) => setIntentTitle(e.target.value)}
+          placeholder="Digite aqui o título da intent aqui..."
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+        />
+        <h1 className="font-bold mt-3">Tipo do componente:</h1>
         <Form onSubmit={handleFormSubmit} />
       </div>
       <div className="flex flex-1 flex-col overflow-auto">
